@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cyber-900: #060a12;
+  --color-cyber-800: #0c1320;
+  --color-cyber-700: #111b2e;
+  --color-cyber-600: #1a2744;
+  --color-cyber-500: #2a3f66;
+  --color-neon-cyan: #00e5ff;
+  --color-neon-blue: #0088ff;
+  --color-neon-green: #00ff88;
+  --color-neon-red: #ff2244;
+  --color-neon-orange: #ff6600;
+  --color-neon-yellow: #ffcc00;
+  --color-neon-purple: #8844ff;
+  --font-mono: "JetBrains Mono", "SF Mono", "Fira Code", monospace;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background-color: var(--color-cyber-900);
+    background-image:
+      radial-gradient(ellipse 70% 40% at 50% -10%, rgba(0, 140, 255, 0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 30% at 80% 90%, rgba(0, 255, 136, 0.03) 0%, transparent 50%),
+      radial-gradient(ellipse 40% 30% at 20% 85%, rgba(136, 68, 255, 0.03) 0%, transparent 50%);
+    background-attachment: fixed;
+    color: #e2e8f0;
+    overflow-x: hidden;
+  }
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 229, 255, 0.15);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 229, 255, 0.3);
+  }
+}
+
+@utility glass {
+  background: rgba(6, 10, 18, 0.7);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+@utility glass-strong {
+  background: rgba(6, 10, 18, 0.85);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 48px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+@utility glow-cyan {
+  text-shadow: 0 0 20px rgba(0, 229, 255, 0.6), 0 0 40px rgba(0, 229, 255, 0.3);
+}
+
+@utility glow-green {
+  text-shadow: 0 0 20px rgba(0, 255, 136, 0.6), 0 0 40px rgba(0, 255, 136, 0.3);
+}
+
+@utility glow-red {
+  text-shadow: 0 0 20px rgba(255, 34, 68, 0.6), 0 0 40px rgba(255, 34, 68, 0.3);
+}
+
+@utility glow-yellow {
+  text-shadow: 0 0 20px rgba(255, 204, 0, 0.6), 0 0 40px rgba(255, 204, 0, 0.3);
+}
+
+@utility glow-orange {
+  text-shadow: 0 0 20px rgba(255, 102, 0, 0.6), 0 0 40px rgba(255, 102, 0, 0.3);
+}
+
+@utility glow-border-cyan {
+  box-shadow: 0 0 24px rgba(0, 229, 255, 0.15), inset 0 0 24px rgba(0, 229, 255, 0.03);
+}
+
+@utility glow-border-red {
+  box-shadow: 0 0 24px rgba(255, 34, 68, 0.2), inset 0 0 24px rgba(255, 34, 68, 0.04);
+}
+
+@utility glow-border-green {
+  box-shadow: 0 0 24px rgba(0, 255, 136, 0.15), inset 0 0 24px rgba(0, 255, 136, 0.03);
+}
+
+@utility grid-bg {
+  background-image:
+    linear-gradient(rgba(0, 229, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.02) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes radar-sweep {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+@keyframes data-stream {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes status-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.4); }
+  70% { box-shadow: 0 0 0 6px rgba(0, 229, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 229, 255, 0); }
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sentient Gateway</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-surface text-gray-100 select-none">
+
+  <!-- ===== STATUS HEADER ===== -->
+  <div class="glass-card mx-3 mt-3 rounded-xl px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br flex items-center justify-center shadow-lg flex-shrink-0">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="text-sm font-extrabold tracking-wide text-gray-100" style="letter-spacing:0.04em;">SENTIENT GATEWAY</h1>
+        <p class="text-[10px] font-medium text-gray-500 tracking-wide">Hybrid AI Orchestrator</p>
+      </div>
+    </div>
+    <div class="flex flex-col items-center gap-0.5">
+      <div id="statusDot" class="w-2.5 h-2.5 rounded-full glow-emerald" style="background:#10b981;"></div>
+      <span id="statusText" class="text-[9px] font-semibold text-gray-500 tracking-wider uppercase">Active</span>
+    </div>
+  </div>
+
+  <!-- ===== MODE SELECTOR ===== -->
+  <div class="glass-card mx-3 mt-2 rounded-xl px-4 py-3.5">
+    <div class="segmented" role="group">
+      <button id="modeLocal" class="active-local">
+        <svg class="inline-block mr-1.5 mb-0.5" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        Local Mode
+      </button>
+      <button id="modeCloud">Cloud Mode</button>
+    </div>
+    <p id="modeDescription" class="text-[10px] text-gray-500 mt-2.5 text-center leading-relaxed tracking-wide">
+      Privacy First — Data stays on this Mac
+    </p>
+  </div>
+
+  <!-- ===== FINANCIAL IMPACT HERO ===== -->
+  <div class="glass-card mx-3 mt-2 rounded-xl px-4 py-3.5 text-center">
+    <p class="text-[10px] font-semibold text-gray-500 uppercase tracking-[0.12em] mb-1">Total Savings</p>
+    <p class="text-3xl font-extrabold tracking-tight countup" id="dollarsSaved">$0.00</p>
+    <p class="text-[9px] text-gray-600 mt-0.5" style="font-feature-settings:'tnum';">at $0.03 / 1K tokens</p>
+    <div class="flex gap-3 mt-3">
+      <div class="flex-1">
+        <div class="flex items-center justify-between text-[9px] mb-1">
+          <span class="font-semibold text-emerald-400">Local</span>
+          <span class="font-bold text-emerald-400" id="localPercent">0%</span>
+        </div>
+        <div class="gauge-track"><div class="gauge-fill bg-emerald-500" id="localBar" style="width:0%;"></div></div>
+      </div>
+      <div class="flex-1">
+        <div class="flex items-center justify-between text-[9px] mb-1">
+          <span class="font-semibold text-gray-500">Cloud</span>
+          <span class="font-bold text-gray-500" id="cloudPercent">0%</span>
+        </div>
+        <div class="gauge-track"><div class="gauge-fill bg-gray-600" id="cloudBar" style="width:0%;"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SECURITY EVENT LOG ===== -->
+  <div class="glass-card mx-3 mt-2 rounded-xl px-4 py-3">
+    <div class="flex items-center justify-between mb-2">
+      <div class="flex items-center gap-1.5">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.12em]">Security Events</span>
+        <span class="text-[9px] font-semibold text-gray-600 ml-1" id="eventCount">0</span>
+      </div>
+      <button id="clearEvents" class="text-[9px] text-gray-600 hover:text-gray-400 transition-colors">Clear</button>
+    </div>
+    <div id="eventList" class="overlay-scroll space-y-1">
+      <div class="text-[10px] text-gray-600 text-center py-4" id="eventEmpty">No security events</div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <div class="mx-3 my-2 pb-2 flex items-center justify-between">
+    <div class="flex items-center gap-1.5 text-[9px]">
+      <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+      <span class="text-gray-600 font-medium">DLP Engine</span>
+      <span class="text-gray-700">·</span>
+      <span class="text-gray-600 font-medium" id="ollamaFooter">Ollama <span id="ollamaFooterStatus">offline</span></span>
+    </div>
+    <button id="resetStats" class="text-[9px] text-gray-600 hover:text-gray-400 transition-colors flex items-center gap-1">
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+      Reset
+    </button>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

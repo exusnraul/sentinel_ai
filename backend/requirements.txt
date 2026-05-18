@@ -1,0 +1,76 @@
+# ════════════════════════════════════════════════════════════════
+#  Sentinel AI — Python Backend Dependencies
+#  Python: 3.12.13  (pinned via backend/.python-version)
+#  Generated from: uv pip list  (backend/.venv, macOS Apple Silicon)
+#
+#  To install (recommended — uv is faster):
+#    uv venv --python 3.12 .venv
+#    uv pip install -r requirements.txt
+#
+#  To install (standard pip — works on all platforms):
+#    python3.12 -m venv .venv
+#    source .venv/bin/activate        # macOS / Linux
+#    .venv\Scripts\activate           # Windows
+#    pip install -r requirements.txt
+#
+#  Platform notes:
+#    macOS  : pyobjc-* packages are installed automatically by pynput.
+#             They are macOS-only and will be skipped on other platforms.
+#    Linux  : python3-xlib or evdev may be auto-installed by pynput instead.
+#    Windows: pywin32 may be auto-installed by pynput instead.
+#    CUDA   : For Nvidia GPU LLM inference, replace llama-cpp-python with:
+#             pip install llama-cpp-python \
+#               --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cu121
+# ════════════════════════════════════════════════════════════════
+
+# ── Web framework & server ────────────────────────────────────────
+fastapi==0.136.1
+uvicorn==0.47.0
+starlette==1.0.0
+websockets==16.0
+
+# ── Data validation ───────────────────────────────────────────────
+pydantic==2.13.4
+pydantic-core==2.46.4
+annotated-types==0.7.0
+
+# ── Screen capture & OCR ──────────────────────────────────────────
+mss==10.2.0
+Pillow==12.2.0
+pytesseract==0.3.13
+
+# ── Clipboard & input monitoring ─────────────────────────────────
+pyperclip==1.11.0
+pynput==1.8.2
+
+# ── HTTP client ───────────────────────────────────────────────────
+requests==2.34.2
+urllib3==2.7.0
+certifi==2026.4.22
+charset-normalizer==3.4.7
+idna==3.15
+
+# ── Async / runtime ───────────────────────────────────────────────
+anyio==4.13.0
+h11==0.16.0
+click==8.3.3
+typing-extensions==4.15.0
+typing-inspection==0.4.2
+
+# ── Utilities ─────────────────────────────────────────────────────
+jinja2==3.1.6
+markupsafe==3.0.3
+diskcache==5.6.3
+numpy==2.4.4
+six==1.17.0
+packaging==26.2
+
+# ── Local LLM inference ───────────────────────────────────────────
+# Compiles C++ extensions on install — requires a C++ compiler:
+#   macOS  : xcode-select --install
+#   Ubuntu : sudo apt install build-essential
+#   Windows: Install Visual Studio Build Tools
+#
+# Apple Silicon (Metal GPU): installed as-is, Metal enabled automatically.
+# Nvidia CUDA: see platform note at top of this file.
+llama-cpp-python==0.3.23
